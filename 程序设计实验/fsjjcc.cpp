@@ -7,14 +7,14 @@ class Rational{
 		Rational(int FZ=1,int FM=1){
 			fz=FZ;fm=FM;
 		}
-		Rational Add(Rational &r); //ÇóÁ½¸ö·ÖÊıµÄºÍ
-		Rational Sub(Rational &r); //ÇóÁ½¸ö·ÖÊıµÄ²î
-		Rational Mul(Rational &r); //ÇóÁ½¸ö·ÖÊıµÄ»ı
-		Rational Div(Rational &r); //ÇóÁ½¸ö·ÖÊıµÄÉÌ
-		 Rational operator +(Rational &r); //ÖØÔØ¡°+¡±ÔËËã·û£¬ÇóÁ½¸ö·ÖÊıµÄºÍ
-		 Rational operator -(Rational &r); //ÖØÔØ¡°-¡±ÔËËã·û£¬ÇóÁ½¸ö·ÖÊıµÄ²î
-		 Rational operator *(Rational &r);//ÖØÔØ¡°*¡±ÔËËã·û£¬ÇóÁ½¸ö·ÖÊıµÄ»ı
-		 Rational operator /(Rational &r); //ÖØÔØ¡°/¡±ÔËËã·û£¬ÇóÁ½¸ö·ÖÊıµÄÉÌ
+		Rational Add(Rational &r); //æ±‚ä¸¤ä¸ªåˆ†æ•°çš„å’Œ
+		Rational Sub(Rational &r); //æ±‚ä¸¤ä¸ªåˆ†æ•°çš„å·®
+		Rational Mul(Rational &r); //æ±‚ä¸¤ä¸ªåˆ†æ•°çš„ç§¯
+		Rational Div(Rational &r); //æ±‚ä¸¤ä¸ªåˆ†æ•°çš„å•†
+		 Rational operator +(Rational &r); //é‡è½½â€œ+â€è¿ç®—ç¬¦ï¼Œæ±‚ä¸¤ä¸ªåˆ†æ•°çš„å’Œ
+		 Rational operator -(Rational &r); //é‡è½½â€œ-â€è¿ç®—ç¬¦ï¼Œæ±‚ä¸¤ä¸ªåˆ†æ•°çš„å·®
+		 Rational operator *(Rational &r);//é‡è½½â€œ*â€è¿ç®—ç¬¦ï¼Œæ±‚ä¸¤ä¸ªåˆ†æ•°çš„ç§¯
+		 Rational operator /(Rational &r); //é‡è½½â€œ/â€è¿ç®—ç¬¦ï¼Œæ±‚ä¸¤ä¸ªåˆ†æ•°çš„å•†
 		
 		int Divisor(int a,int b){
 			int d;
@@ -28,12 +28,23 @@ class Rational{
 				if(a%d==0&&b%d==0) 
 				{   break;  }
 	 		return d;
-		} //Çó×î´ó¹«Ô¼Êı				
+		} //æ±‚æœ€å¤§å…¬çº¦æ•°				
 		friend ostream& operator<<(ostream &output,Rational &r){
 			int c;
 			c= r.Divisor(r.fz,r.fm);
 			r.fz /=c; r.fm /=c;
-			return output <<r.fz<<"/"<<r.fm<<endl;
+			if(r.fz>0&&r.fm<0){
+				return output <<"-"<<r.fz<<"/"<< -r.fm<<endl;
+			}
+			if(r.fz<0&&r.fm>0){
+				return output <<"-"<< -r.fz<<"/"<<r.fm<<endl;
+			}
+			if(r.fz<0&&r.fm<0){
+				return output << -r.fz<<"/"<<-r.fm<<endl;
+			}
+				return output <<r.fz<<"/"<<r.fm<<endl;
+			
+			
 			
 		}
 };
